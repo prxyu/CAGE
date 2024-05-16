@@ -1,38 +1,44 @@
 #include "Engine.h"
+#include "Graphics.h"
 #include <Windows.h>
 #include <sstream>
 
 Game* Engine::game = nullptr;
 Window* Engine::window = nullptr;
+Graphics* Engine::graphics = nullptr;
 
 Engine::Engine() {
 	window = new Window();
+	graphics = new Graphics;
 }
 
 Engine::~Engine() {
 	delete game;
+	delete graphics;
 	delete window;
 }
 
 int Engine::Start(Game* level) {
 	game = level;
 
-	window->Create();
+	if (!window->Create()) {
+		MessageBox(nullptr, "Failed to create the window", "CAGE ERROR", MB_OK | MB_ICONERROR);
+		return EXIT_FAILURE;
+	}
+
+	if (!graphics->Initialize(window)) {
+		MessageBox(window->Id(), "Failed to initialize graphics", "CAGE ERROR", MB_OK | MB_ICONERROR);
+		return EXIT_FAILURE;
+	}
 
 	return Loop();
 }
 
 int Engine::Loop() {
 
-	MSG msg = { 0 };
-	HDC hdc;
-	RECT rect;
-
-	hdc = GetDC(window->Id());
-
-	GetClientRect(window->Id(), &rect);
-
 	game->Init();
+
+	MSG msg = { 0 };
 
 	do {
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
@@ -42,19 +48,17 @@ int Engine::Loop() {
 		else {
 			game->Update();
 
-			FillRect(hdc, &rect, CreateSolidBrush(window->Color()));
+			graphics->Clear();
 
 			game->Draw();
 
-			Sleep(16);
-		} 
+			graphics->Present();
 
+			Sleep(16);
+		}
 	} while (msg.message != WM_QUIT);
 
 	game->Finalize();
 
-	ReleaseDC(window->Id(), hdc);
-
 	return int(msg.wParam);
-
 }

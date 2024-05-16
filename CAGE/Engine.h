@@ -3,6 +3,7 @@
 
 #include "Game.h"
 #include "Window.h"
+#include "Graphics.h"
 
 class Engine {
 private:
@@ -11,6 +12,7 @@ private:
 public:
 	static Game* game;
 	static Window* window;
+	static Graphics* graphics;
 
 	Engine();
 	~Engine();

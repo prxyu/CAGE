@@ -6,7 +6,7 @@
 #include "Types.h"
 #include <string>
 
-enum WindowModes { FULLSCREEN, WINDOWED };
+enum WindowModes { FULLSCREEN, WINDOWED, BORDELESS };
 
 class Window {
 private:

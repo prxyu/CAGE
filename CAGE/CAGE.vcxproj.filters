@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Engine.cpp">
+      <Filter>CAGE\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>CAGE\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>CAGE\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics.cpp">
+      <Filter>CAGE\Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine.h">
+      <Filter>CAGE\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>CAGE\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Types.h">
+      <Filter>CAGE\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>CAGE\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>src\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources.h">
+      <Filter>src\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h">
+      <Filter>CAGE\Headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CAGE">
+      <UniqueIdentifier>{00b4fbee-dd92-4b8a-becf-708908d3fa93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CAGE\Headers">
+      <UniqueIdentifier>{6616035f-a002-4187-be7a-8bc1c20b3a63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CAGE\Source">
+      <UniqueIdentifier>{739fa734-31ba-451b-a930-1bd4114f1ef4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{c93183c1-97b0-49ba-acf4-a7cad591b3a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Header">
+      <UniqueIdentifier>{01991bc3-16df-4908-8d9f-c41ffbbae51b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Resources Files">
+      <UniqueIdentifier>{4f7ce9b5-b575-4bd5-844d-db5bf02da254}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resources.rc">
+      <Filter>src\Resources Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
