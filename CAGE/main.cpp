@@ -4,7 +4,7 @@
 
 class CAGE : public Game {
 private:
-
+	
 public:
 	void Init();
 	void Update();
@@ -22,7 +22,7 @@ void CAGE::Update() {
 }
 
 void CAGE::Draw() {
-
+	
 }
 
 void CAGE::Finalize() {
@@ -34,14 +34,15 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 	Engine* engine = new Engine();
 
 	engine->window->Mode(WINDOWED);
-	engine->window->Size(960, 540);
-	engine->window->Color(240, 0, 0);
+	engine->window->Size(940, 540);
+	/*engine->graphics->VSync(true);*/
+	engine->window->Color(10, 10, 10);
 	engine->window->Title("CAGE");
 	engine->window->Icon(IDI_ICON);
 	engine->window->Cursor(IDC_CURSOR);
 
-	int CExit_code = engine->Start(new CAGE());
+	int status = engine->Start(new CAGE());
 
 	delete engine;
-	return CExit_code;
+	return status;
 }

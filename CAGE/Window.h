@@ -1,6 +1,9 @@
 ﻿#ifndef _CAGE_WINDOW_H_
 #define _CAGE_WINDOW_H_
 
+#define WS_FULLSCREEN WS_EX_TOPMOST | WS_POPUP | WS_VISIBLE
+#define WS_WINDOWED WS_OVERLAPPEDWINDOW | WS_SYSMENU | WS_VISIBLE
+
 #include <Windows.h>
 #include <windowsx.h>
 #include "Types.h"

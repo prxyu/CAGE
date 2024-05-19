@@ -16,6 +16,9 @@
     <ClCompile Include="Graphics.cpp">
       <Filter>CAGE\Source</Filter>
     </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>CAGE\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -30,13 +33,16 @@
     <ClInclude Include="Window.h">
       <Filter>CAGE\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>src\Header</Filter>
+    <ClInclude Include="Graphics.h">
+      <Filter>CAGE\Headers</Filter>
     </ClInclude>
     <ClInclude Include="Resources.h">
-      <Filter>src\Header</Filter>
+      <Filter>src\Resources Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics.h">
+    <ClInclude Include="resource.h">
+      <Filter>src\Resources Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
       <Filter>CAGE\Headers</Filter>
     </ClInclude>
   </ItemGroup>

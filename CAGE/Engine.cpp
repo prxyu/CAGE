@@ -6,6 +6,9 @@
 Game* Engine::game = nullptr;
 Window* Engine::window = nullptr;
 Graphics* Engine::graphics = nullptr;
+float Engine::delta = 0.0f;
+bool Engine::paused = false;
+Timer Engine::timer;
 
 Engine::Engine() {
 	window = new Window();
@@ -31,7 +34,23 @@ int Engine::Start(Game* level) {
 		return EXIT_FAILURE;
 	}
 
-	return Loop();
+	timeBeginPeriod(1);
+	
+	int CExit_code = Loop();
+
+	timeEndPeriod(1);
+
+	return CExit_code;
+}
+
+void Engine::Pause() {
+	paused = true;
+	timer.Stop();
+}
+
+void Engine::Resume() {
+	paused = false;
+	timer.Start();
 }
 
 int Engine::Loop() {
@@ -40,25 +59,80 @@ int Engine::Loop() {
 
 	MSG msg = { 0 };
 
+	bool pauseKeyControl = true;
+
 	do {
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
 		else {
-			game->Update();
+			
+			if (pauseKeyControl) {
+				if (window->KeyDown(VK_PAUSE)) {
+					paused = !paused;
+					pauseKeyControl = false;
 
-			graphics->Clear();
+					if (paused)
+						timer.Stop();
+					else
+						timer.Start();
+				}
+			}
+			else {
+				if (window->KeyUp(VK_PAUSE))
+					pauseKeyControl = true;
+			}
 
-			game->Draw();
+			if (!paused) {
+				delta = DeltaTime();
 
-			graphics->Present();
+				game->Update();
 
-			Sleep(16);
+				graphics->Clear();
+
+				game->Draw();
+
+				graphics->Present();
+			}
+			else {
+				game->onPause();
+			}
 		}
 	} while (msg.message != WM_QUIT);
 
 	game->Finalize();
 
 	return int(msg.wParam);
+}
+
+float Engine::DeltaTime() {
+
+#ifdef _DEBUG
+	static float totalTime = 0.0f;
+	static uint frameCount = 0;
+#endif
+
+	delta = timer.Reset();
+
+#ifdef _DEBUG
+	totalTime += delta;
+
+	frameCount++;
+
+	if (totalTime >= 1.0f) {
+		std::stringstream text;
+		text << std::fixed;
+		text.precision(3);
+
+		text << window->Title().c_str() << "     " << "FPS: " << frameCount << "    " << "Frame Time: " << delta * 1000 << " (ms)";
+
+		SetWindowText(window->Id(), text.str().c_str());
+
+		frameCount = 0;
+		totalTime -= 1.0f;
+	}
+#endif
+
+	return delta;
 }

@@ -24,11 +24,18 @@ Window::Window() {
 void Window::Mode(int mode) {
 	windowMode = mode;
 
-	if (mode == WINDOWED) {
-		windowStyle = WS_OVERLAPPED | WS_SYSMENU | WS_VISIBLE;
-	}
-	else {
-		windowStyle = WS_EX_TOPMOST | WS_POPUP | WS_VISIBLE;
+	switch (mode) {
+	case WINDOWED:
+		windowStyle = WS_WINDOWED;
+		break;
+
+	case FULLSCREEN:
+		windowStyle = WS_FULLSCREEN;
+		break;
+	
+
+	default:
+		break;
 	}
 }
 

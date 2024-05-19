@@ -53,7 +53,7 @@ bool Graphics::Initialize(Window* window) {
 
 	uint createDeviceFlags = 0;
 
-#ifndef _CDEBUG
+#ifdef _DEBUG
 	createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
 #endif
 
